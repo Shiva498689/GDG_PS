@@ -1,23 +1,40 @@
 ```mermaid
-flowchart LR
+flowchart TB
 
-    USER([Company Ticker])
+    TICKER([Company Ticker])
 
-    EDGAR[(SEC EDGAR)]
+    SEC[(SEC EDGAR)]
 
-    XBRL[XBRL Filings]
+    AGENT["AI Ingestion Agent"]
 
-    INGEST["Ingestion Agent"]
+    OUTPUT[(Structured Financial State)]
 
-    STATE[(Shared Financial State)]
+    TICKER --> SEC
+    SEC --> AGENT
+    AGENT --> OUTPUT
 
-    USER --> EDGAR
-    EDGAR --> XBRL
-    XBRL --> INGEST
-    INGEST --> STATE
+    subgraph Extracted Data
+        IS[Income Statement]
+        BS[Balance Sheet]
+        CF[Cash Flow]
+        METRICS[30+ Financial Metrics]
+    end
 
-    classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
-    class USER,EDGAR,XBRL,INGEST,STATE dark;
+    AGENT --> IS
+    AGENT --> BS
+    AGENT --> CF
+    AGENT --> METRICS
+
+    IS --> OUTPUT
+    BS --> OUTPUT
+    CF --> OUTPUT
+    METRICS --> OUTPUT
+
+    classDef dark fill:#0F0F10,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
+
+    class TICKER,SEC,AGENT,OUTPUT,IS,BS,CF,METRICS dark;
+
+    style Extracted Data fill:#000000,stroke:#666666,color:#FFFFFF
 
     linkStyle default stroke:#FFFFFF,stroke-width:2px
 ```
