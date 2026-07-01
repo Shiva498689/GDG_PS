@@ -1,40 +1,54 @@
 ```mermaid
 flowchart TB
 
-    TICKER([Company Ticker])
+    TICKER([Company])
 
-    SEC[(SEC EDGAR)]
+    subgraph SOURCES["Market Data Sources"]
 
-    AGENT["AI Ingestion Agent"]
+        PRICE[(Equity Market)]
 
-    OUTPUT[(Structured Financial State)]
+        FRED[(Federal Reserve)]
 
-    TICKER --> SEC
-    SEC --> AGENT
-    AGENT --> OUTPUT
-
-    subgraph Extracted Data
-        IS[Income Statement]
-        BS[Balance Sheet]
-        CF[Cash Flow]
-        METRICS[30+ Financial Metrics]
     end
 
-    AGENT --> IS
-    AGENT --> BS
-    AGENT --> CF
-    AGENT --> METRICS
+    AGENT["Market Intelligence Agent"]
 
-    IS --> OUTPUT
-    BS --> OUTPUT
-    CF --> OUTPUT
-    METRICS --> OUTPUT
+    subgraph FEATURES["Market Intelligence"]
 
-    classDef dark fill:#0F0F10,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
+        P["Stock Price"]
 
-    class TICKER,SEC,AGENT,OUTPUT,IS,BS,CF,METRICS dark;
+        M["Market Cap"]
 
-    style Extracted Data fill:#000000,stroke:#666666,color:#FFFFFF
+        V["252D Volatility"]
+
+        R["Risk-Free Rate"]
+
+    end
+
+    OUTPUT[(Shared Financial State)]
+
+    TICKER --> AGENT
+
+    PRICE --> AGENT
+    FRED --> AGENT
+
+    AGENT --> P
+    AGENT --> M
+    AGENT --> V
+    AGENT --> R
+
+    P --> OUTPUT
+    M --> OUTPUT
+    V --> OUTPUT
+    R --> OUTPUT
+
+    classDef dark fill:#0E0E0E,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
+
+    class TICKER,PRICE,FRED,AGENT,P,M,V,R,OUTPUT dark;
+
+    style SOURCES fill:#000000,stroke:#666666,color:#FFFFFF
+
+    style FEATURES fill:#000000,stroke:#666666,color:#FFFFFF
 
     linkStyle default stroke:#FFFFFF,stroke-width:2px
 ```
