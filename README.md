@@ -1,77 +1,50 @@
 ```mermaid
 flowchart LR
 
-    INPUT[(Financial Statements)]
+    KG["Financial Knowledge Graph<br/><small>72+ Metrics</small>"]
 
-    KG["Financial Knowledge Graph"]
-
-    subgraph GRAPH["Interconnected Financial Metrics"]
+    subgraph SG["Illustrative Subgraph"]
 
         REV((Revenue))
         GP((Gross Profit))
-        OI((Operating Income))
         NI((Net Income))
+        CFO((Cash Flow))
+        EQ((Equity))
 
-        CFO((Operating Cash Flow))
-        FCF((Free Cash Flow))
-
-        CA((Current Assets))
-        CL((Current Liabilities))
-
-        TA((Total Assets))
-        TL((Total Liabilities))
-
-        EQ((Shareholders' Equity))
-
-        AR((Accounts Receivable))
-        INV((Inventory))
-        CAPEX((CapEx))
+        MORE1((⋯))
+        MORE2((⋯))
+        MORE3((⋯))
 
         REV --- GP
-        GP --- OI
-        OI --- NI
-
-        REV --- AR
-        REV --- INV
-
+        GP --- NI
         NI --- CFO
-        CFO --- FCF
-        CAPEX --- FCF
+        CFO --- EQ
 
-        TA --- TL
-        TL --- EQ
-        TA --- CFO
+        REV --- MORE1
+        GP --- MORE2
+        EQ --- MORE3
 
-        CA --- CL
-        CL --- CFO
-
-        AR --- CA
-        INV --- CA
-
-        EQ --- NI
-        GP --- CFO
-        OI --- TA
+        MORE1 --- MORE2
+        MORE2 --- MORE3
 
     end
 
-    SUB["Ego-Centric<br/>Subgraph Extraction"]
+    EGO["Ego-Centric<br/>Subgraph Extraction"]
 
-    LLM["Contextual LLM<br/>Reasoning"]
+    LLM["LLM<br/>Contextual Reasoning"]
 
-    SCORE["Contextual Health<br/>Assessment"]
+    SCORE["Multi-Dimensional<br/>Health Assessment"]
 
-    INPUT --> KG
-    KG --> GRAPH
-    GRAPH --> SUB
-    SUB --> LLM
+    KG --> SG
+    SG --> EGO
+    EGO --> LLM
     LLM --> SCORE
 
     classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
 
-    class INPUT,KG,SUB,LLM,SCORE dark;
-    class REV,GP,OI,NI,CFO,FCF,CA,CL,TA,TL,EQ,AR,INV,CAPEX dark;
+    class KG,EGO,LLM,SCORE,REV,GP,NI,CFO,EQ,MORE1,MORE2,MORE3 dark;
 
-    style GRAPH fill:#000000,stroke:#666666,color:#FFFFFF
+    style SG fill:#000000,stroke:#666666,color:#FFFFFF
 
-    linkStyle default stroke:#FFFFFF,stroke-width:1.6px
+    linkStyle default stroke:#FFFFFF,stroke-width:1.8px
 ```
