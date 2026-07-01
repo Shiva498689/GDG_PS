@@ -1,24 +1,39 @@
 ```mermaid
 flowchart TB
 
-    FILINGS["SEC Filings"]
+    AGENT["Knowledge Graph Analysis Agent"]
 
-    CHUNKS["Document Chunks"]
+    subgraph EGO["Ego-Centric Financial Context"]
 
-    VECTOR["Vector Database"]
+        CENTER["Operating Cash Flow"]
 
-    AGENT["Narrative Analysis Agent"]
+        REV["Revenue"]
+        GP["Gross Profit"]
+        NI["Net Income"]
+        FCF["Free Cash Flow"]
+        WC["Working Capital"]
 
-    INSIGHTS["Context-Aware Insights"]
+        REV --- CENTER
+        GP --- CENTER
+        NI --- CENTER
+        FCF --- CENTER
+        WC --- CENTER
 
-    FILINGS --> CHUNKS
-    CHUNKS --> VECTOR
-    VECTOR --> AGENT
-    AGENT --> INSIGHTS
+    end
+
+    AI["LLM Contextual Analysis"]
+
+    SCORE["Financial Health Score"]
+
+    AGENT --> EGO
+    EGO --> AI
+    AI --> SCORE
 
     classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
 
-    class FILINGS,CHUNKS,VECTOR,AGENT,INSIGHTS dark;
+    class AGENT,CENTER,REV,GP,NI,FCF,WC,AI,SCORE dark;
+
+    style EGO fill:#000000,stroke:#666666,color:#FFFFFF
 
     linkStyle default stroke:#FFFFFF,stroke-width:2px
 ```
