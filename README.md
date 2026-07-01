@@ -1,28 +1,49 @@
 ```mermaid
 flowchart TB
 
-    PRICE["Equity Price"]
+    STATE[(Shared Financial State)]
 
-    CAP["Market Capitalization"]
+    AGENT["Quantitative Analysis Agent"]
 
-    VOL["252-Day Volatility"]
+    subgraph MODELS["Institutional Financial Models"]
 
-    RATE["Risk-Free Rate"]
+        F["Piotroski<br/>F-Score"]
 
-    AGENT["Market Intelligence Agent"]
+        B["Beneish<br/>M-Score"]
 
-    OUTPUT[(Market Context)]
+        O["Ohlson<br/>O-Score"]
 
-    PRICE --> AGENT
-    CAP --> AGENT
-    VOL --> AGENT
-    RATE --> AGENT
+        M["Merton<br/>Distance-to-Default"]
 
-    AGENT --> OUTPUT
+        D["DCF<br/>Valuation"]
+
+        MC["Monte Carlo<br/>Simulation"]
+
+    end
+
+    OUTPUT["Risk Metrics &<br/>Intrinsic Valuation"]
+
+    STATE --> AGENT
+
+    AGENT --> F
+    AGENT --> B
+    AGENT --> O
+    AGENT --> M
+    AGENT --> D
+    AGENT --> MC
+
+    F --> OUTPUT
+    B --> OUTPUT
+    O --> OUTPUT
+    M --> OUTPUT
+    D --> OUTPUT
+    MC --> OUTPUT
 
     classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
 
-    class PRICE,CAP,VOL,RATE,AGENT,OUTPUT dark;
+    class STATE,AGENT,F,B,O,M,D,MC,OUTPUT dark;
+
+    style MODELS fill:#000000,stroke:#666666,color:#FFFFFF
 
     linkStyle default stroke:#FFFFFF,stroke-width:2px
 ```
