@@ -1,49 +1,24 @@
 ```mermaid
-flowchart LR
+flowchart TB
 
-    STATE[(Shared Financial State)]
+    FILINGS["SEC Filings"]
 
-    AGENT["Quantitative Analysis Engine"]
+    CHUNKS["Document Chunks"]
 
-    subgraph ANALYTICS["Analytics Modules"]
+    VECTOR["Vector Database"]
 
-        HEALTH["Financial Health"]
+    AGENT["Narrative Analysis Agent"]
 
-        FORENSICS["Forensic Accounting"]
+    INSIGHTS["Context-Aware Insights"]
 
-        CREDIT["Credit Risk"]
-
-        VAL["Valuation"]
-
-    end
-
-    OUTPUT["Institutional Risk Assessment"]
-
-    STATE --> AGENT
-
-    AGENT --> HEALTH
-    AGENT --> FORENSICS
-    AGENT --> CREDIT
-    AGENT --> VAL
-
-    HEALTH --- HEALTH_M["Piotroski"]
-
-    FORENSICS --- FORENSICS_M["Beneish"]
-
-    CREDIT --- CREDIT_M["Ohlson<br/>Merton"]
-
-    VAL --- VAL_M["DCF<br/>Monte Carlo"]
-
-    HEALTH --> OUTPUT
-    FORENSICS --> OUTPUT
-    CREDIT --> OUTPUT
-    VAL --> OUTPUT
+    FILINGS --> CHUNKS
+    CHUNKS --> VECTOR
+    VECTOR --> AGENT
+    AGENT --> INSIGHTS
 
     classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
 
-    class STATE,AGENT,HEALTH,FORENSICS,CREDIT,VAL,OUTPUT,HEALTH_M,FORENSICS_M,CREDIT_M,VAL_M dark;
-
-    style ANALYTICS fill:#000000,stroke:#666666,color:#FFFFFF
+    class FILINGS,CHUNKS,VECTOR,AGENT,INSIGHTS dark;
 
     linkStyle default stroke:#FFFFFF,stroke-width:2px
 ```
