@@ -1,67 +1,77 @@
 ```mermaid
 flowchart LR
 
-    INPUT[(Structured<br/>Financial Data)]
+    INPUT[(Financial Statements)]
 
-    GRAPH["Financial Knowledge Graph<br/><br/>72 Interconnected Metrics"]
+    KG["Financial Knowledge Graph"]
 
-    subgraph NETWORK["Knowledge Network"]
+    subgraph GRAPH["Interconnected Financial Metrics"]
 
-        N1(( ))
-        N2(( ))
-        N3(( ))
-        N4(( ))
-        N5(( ))
-        N6(( ))
-        N7(( ))
-        N8(( ))
-        N9(( ))
-        N10(( ))
-        N11(( ))
-        N12(( ))
+        REV((Revenue))
+        GP((Gross Profit))
+        OI((Operating Income))
+        NI((Net Income))
 
-        N1 --- N2
-        N1 --- N5
-        N2 --- N3
-        N2 --- N6
-        N3 --- N4
-        N3 --- N7
-        N4 --- N8
-        N5 --- N6
-        N5 --- N9
-        N6 --- N7
-        N6 --- N10
-        N7 --- N8
-        N7 --- N11
-        N8 --- N12
-        N9 --- N10
-        N10 --- N11
-        N11 --- N12
-        N2 --- N9
-        N4 --- N10
-        N5 --- N11
-        N3 --- N12
+        CFO((Operating Cash Flow))
+        FCF((Free Cash Flow))
+
+        CA((Current Assets))
+        CL((Current Liabilities))
+
+        TA((Total Assets))
+        TL((Total Liabilities))
+
+        EQ((Shareholders' Equity))
+
+        AR((Accounts Receivable))
+        INV((Inventory))
+        CAPEX((CapEx))
+
+        REV --- GP
+        GP --- OI
+        OI --- NI
+
+        REV --- AR
+        REV --- INV
+
+        NI --- CFO
+        CFO --- FCF
+        CAPEX --- FCF
+
+        TA --- TL
+        TL --- EQ
+        TA --- CFO
+
+        CA --- CL
+        CL --- CFO
+
+        AR --- CA
+        INV --- CA
+
+        EQ --- NI
+        GP --- CFO
+        OI --- TA
 
     end
 
-    EGO["Ego-Centric<br/>Subgraph Extraction"]
+    SUB["Ego-Centric<br/>Subgraph Extraction"]
 
-    LLM["LLM Contextual<br/>Reasoning"]
+    LLM["Contextual LLM<br/>Reasoning"]
 
-    OUTPUT["Multi-Dimensional<br/>Financial Health Score"]
+    SCORE["Contextual Health<br/>Assessment"]
 
-    INPUT --> GRAPH
-    GRAPH --> NETWORK
-    NETWORK --> EGO
-    EGO --> LLM
-    LLM --> OUTPUT
+    INPUT --> KG
+    KG --> GRAPH
+    GRAPH --> SUB
+    SUB --> LLM
+    LLM --> SCORE
 
     classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
 
-    class INPUT,GRAPH,EGO,LLM,OUTPUT dark;
-    class N1,N2,N3,N4,N5,N6,N7,N8,N9,N10,N11,N12 dark;
+    class INPUT,KG,SUB,LLM,SCORE dark;
+    class REV,GP,OI,NI,CFO,FCF,CA,CL,TA,TL,EQ,AR,INV,CAPEX dark;
 
-    style NETWORK fill:#000000,stroke:#666666,color:#FFFFFF
+    style GRAPH fill:#000000,stroke:#666666,color:#FFFFFF
 
     linkStyle default stroke:#FFFFFF,stroke-width:1.6px
 ```
