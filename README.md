@@ -1,54 +1,28 @@
 ```mermaid
 flowchart TB
 
-    TICKER([Company])
+    PRICE["Equity Price"]
 
-    subgraph SOURCES["Market Data Sources"]
+    CAP["Market Capitalization"]
 
-        PRICE[(Equity Market)]
+    VOL["252-Day Volatility"]
 
-        FRED[(Federal Reserve)]
-
-    end
+    RATE["Risk-Free Rate"]
 
     AGENT["Market Intelligence Agent"]
 
-    subgraph FEATURES["Market Intelligence"]
-
-        P["Stock Price"]
-
-        M["Market Cap"]
-
-        V["252D Volatility"]
-
-        R["Risk-Free Rate"]
-
-    end
-
-    OUTPUT[(Shared Financial State)]
-
-    TICKER --> AGENT
+    OUTPUT[(Market Context)]
 
     PRICE --> AGENT
-    FRED --> AGENT
+    CAP --> AGENT
+    VOL --> AGENT
+    RATE --> AGENT
 
-    AGENT --> P
-    AGENT --> M
-    AGENT --> V
-    AGENT --> R
+    AGENT --> OUTPUT
 
-    P --> OUTPUT
-    M --> OUTPUT
-    V --> OUTPUT
-    R --> OUTPUT
+    classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
 
-    classDef dark fill:#0E0E0E,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
-
-    class TICKER,PRICE,FRED,AGENT,P,M,V,R,OUTPUT dark;
-
-    style SOURCES fill:#000000,stroke:#666666,color:#FFFFFF
-
-    style FEATURES fill:#000000,stroke:#666666,color:#FFFFFF
+    class PRICE,CAP,VOL,RATE,AGENT,OUTPUT dark;
 
     linkStyle default stroke:#FFFFFF,stroke-width:2px
 ```
