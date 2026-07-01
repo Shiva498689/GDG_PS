@@ -1,66 +1,106 @@
 ```mermaid
 flowchart LR
 
-    %% =========================
-    %% INPUT
-    %% =========================
-    U([User<br/>Company Ticker])
+%% =========================
+%% INPUT
+%% =========================
+U([Company Ticker])
 
-    %% =========================
-    %% DATA COLLECTION
-    %% =========================
-    A1["🤖 Agent 1<br/><b>Financial Data Ingestion</b><br/>SEC EDGAR XBRL<br/>Income Statement<br/>Balance Sheet<br/>Cash Flow Statement"]
+%% =========================
+%% DATA ACQUISITION
+%% =========================
+subgraph L1["Data Acquisition Layer"]
 
-    A2["🤖 Agent 2<br/><b>Market Intelligence</b><br/>Stock Price<br/>Market Cap<br/>252D Volatility<br/>Risk-Free Rate"]
+A1["Agent 1<br/><b>Financial Data Ingestion</b><br/><br/>
+• SEC EDGAR XBRL<br/>
+• Income Statement<br/>
+• Balance Sheet<br/>
+• Cash Flow Statement<br/>
+• 30+ Financial Metrics"]
 
-    STATE[("Shared Financial State")]
+A2["Agent 2<br/><b>Market Intelligence</b><br/><br/>
+• Stock Price<br/>
+• Market Capitalization<br/>
+• 252-Day Volatility<br/>
+• Risk-Free Rate"]
 
-    %% =========================
-    %% ANALYSIS LAYER
-    %% =========================
-    Q["🤖 Agent 3<br/><b>Quantitative Analysis</b><br/>Piotroski F-Score<br/>Beneish M-Score<br/>Ohlson O-Score<br/>Merton Model<br/>DCF<br/>Monte Carlo"]
+end
 
-    KG["🤖 Agent 4<br/><b>Knowledge Graph Analysis</b><br/>Financial Graph<br/>Ego Subgraphs<br/>Contextual Health Scores"]
+STATE[(Shared Financial State)]
 
-    N["🤖 Agent 5<br/><b>Narrative Analysis</b><br/>10-K & 10-Q Retrieval<br/>Vector Search<br/>MD&A Analysis<br/>Business Risks"]
+%% =========================
+%% ANALYSIS
+%% =========================
+subgraph L2["AI Analysis Layer"]
 
-    %% =========================
-    %% AGGREGATION
-    %% =========================
-    R["🤖 Agent 6<br/><b>Risk Aggregation</b><br/>Combine All Findings<br/>Overall Risk Rating"]
+Q["Agent 3<br/><b>Quantitative Analysis</b><br/><br/>
+• Piotroski F-Score<br/>
+• Beneish M-Score<br/>
+• Ohlson O-Score<br/>
+• Merton Model<br/>
+• DCF Valuation<br/>
+• Monte Carlo Simulation"]
 
-    %% =========================
-    %% OUTPUT
-    %% =========================
-    OUT["📄 Investment Committee Report<br/>• Risk Dashboard<br/>• Valuation<br/>• Narrative Findings<br/>• Executive Summary"]
+KG["Agent 4<br/><b>Knowledge Graph Analysis</b><br/><br/>
+• Financial Knowledge Graph<br/>
+• Ego-Centric Subgraphs<br/>
+• Contextual Health Scoring"]
 
-    %% FLOW
-    U --> A1
-    U --> A2
+N["Agent 5<br/><b>Narrative Analysis</b><br/><br/>
+• SEC Filing Retrieval<br/>
+• Vector Search<br/>
+• MD&A Analysis<br/>
+• Business Risk Assessment"]
 
-    A1 --> STATE
-    A2 --> STATE
+end
 
-    STATE --> Q
-    STATE --> KG
-    STATE --> N
+%% =========================
+%% DECISION
+%% =========================
+subgraph L3["Decision Layer"]
 
-    Q --> R
-    KG --> R
-    N --> R
+R["Agent 6<br/><b>Risk Aggregation</b><br/><br/>
+• Consolidated Risk Assessment<br/>
+• Overall Risk Rating"]
 
-    R --> OUT
+OUT["Investment Committee Memorandum<br/><br/>
+• Executive Summary<br/>
+• Risk Dashboard<br/>
+• Valuation Report<br/>
+• Narrative Findings"]
 
-    %% COLORS
-    classDef input fill:#E3F2FD,stroke:#1E88E5,stroke-width:2px;
-    classDef collect fill:#E8F5E9,stroke:#43A047,stroke-width:2px;
-    classDef analysis fill:#FFF3E0,stroke:#FB8C00,stroke-width:2px;
-    classDef state fill:#F3E5F5,stroke:#8E24AA,stroke-width:2px;
-    classDef output fill:#E0F7FA,stroke:#00838F,stroke-width:2px;
+end
 
-    class U input;
-    class A1,A2 collect;
-    class STATE state;
-    class Q,KG,N,R analysis;
-    class OUT output;
+%% FLOW
+U --> A1
+U --> A2
+
+A1 --> STATE
+A2 --> STATE
+
+STATE --> Q
+STATE --> KG
+STATE --> N
+
+Q --> R
+KG --> R
+N --> R
+
+R --> OUT
+
+%% =========================
+%% PROFESSIONAL STYLING
+%% =========================
+
+classDef default fill:#ffffff,stroke:#000000,color:#000000,stroke-width:1.5px;
+
+style U fill:#ffffff,stroke:#000000,stroke-width:2px
+
+style STATE fill:#ffffff,stroke:#000000,stroke-width:2px
+
+style L1 fill:#ffffff,stroke:#000000,stroke-width:1px
+style L2 fill:#ffffff,stroke:#000000,stroke-width:1px
+style L3 fill:#ffffff,stroke:#000000,stroke-width:1px
+
+linkStyle default stroke:#000000,stroke-width:1.5px
 ```
