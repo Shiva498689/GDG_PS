@@ -1,30 +1,38 @@
 ```mermaid
-flowchart TB
+flowchart LR
 
-    subgraph AI["AI Analysis Pipeline"]
+    COMPANY["Company"]
 
-        Q["Quantitative"]
+    EDGAR["SEC EDGAR"]
 
-        KG["Knowledge Graph"]
+    INGEST["Ingestion Agent"]
 
-        N["Narrative"]
+    IS["Income<br/>Statement"]
 
-        R["Risk Engine"]
+    BS["Balance<br/>Sheet"]
 
-    end
+    CF["Cash Flow"]
 
-    REPORT["Report Generation Agent"]
+    METRICS["30+ Metrics"]
 
-    DOC["Investment Committee Memorandum"]
+    STATE["Shared<br/>Financial State"]
 
-    AI --> REPORT
-    REPORT --> DOC
+    COMPANY --> EDGAR
+    EDGAR --> INGEST
+
+    INGEST --> IS
+    INGEST --> BS
+    INGEST --> CF
+    INGEST --> METRICS
+
+    IS --> STATE
+    BS --> STATE
+    CF --> STATE
+    METRICS --> STATE
 
     classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
 
-    class Q,KG,N,R,REPORT,DOC dark;
-
-    style AI fill:#000000,stroke:#666666,color:#FFFFFF
+    class COMPANY,EDGAR,INGEST,IS,BS,CF,METRICS,STATE dark;
 
     linkStyle default stroke:#FFFFFF,stroke-width:2px
 ```
