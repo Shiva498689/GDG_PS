@@ -1,31 +1,30 @@
 ```mermaid
-flowchart LR
+flowchart TB
 
-    Q["Quantitative<br/>Analysis"]
+    subgraph AI["AI Analysis Pipeline"]
 
-    KG["Knowledge Graph<br/>Insights"]
+        Q["Quantitative"]
 
-    N["Narrative<br/>Analysis"]
+        KG["Knowledge Graph"]
 
-    RF["Risk Flags"]
+        N["Narrative"]
 
-    AGENT["Report Generation Agent"]
+        R["Risk Engine"]
 
-    REPORT["Investment Committee Memorandum"]
+    end
 
-    PDF["Professional Report"]
+    REPORT["Report Generation Agent"]
 
-    Q --> AGENT
-    KG --> AGENT
-    N --> AGENT
-    RF --> AGENT
+    DOC["Investment Committee Memorandum"]
 
-    AGENT --> REPORT
-    REPORT --> PDF
+    AI --> REPORT
+    REPORT --> DOC
 
     classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
 
-    class Q,KG,N,RF,AGENT,REPORT,PDF dark;
+    class Q,KG,N,R,REPORT,DOC dark;
+
+    style AI fill:#000000,stroke:#666666,color:#FFFFFF
 
     linkStyle default stroke:#FFFFFF,stroke-width:2px
 ```
