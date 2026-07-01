@@ -1,36 +1,31 @@
 ```mermaid
 flowchart LR
 
-    KG["Financial Knowledge Graph<br/>72+ Metrics"]
+    Q["Quantitative<br/>Analysis"]
 
-    subgraph SG["Illustrative Ego Subgraph"]
+    KG["Knowledge Graph<br/>Insights"]
 
-        REV((Revenue))
-        GP((Gross Profit))
-        CFO((Cash Flow))
-        NI((Net Income))
-        MORE((⋯))
+    N["Narrative<br/>Analysis"]
 
-        CFO --- REV
-        CFO --- GP
-        CFO --- NI
-        CFO --- MORE
+    RF["Risk Flags"]
 
-    end
+    AGENT["Report Generation Agent"]
 
-    AI["LLM<br/>Reasoning"]
+    REPORT["Investment Committee Memorandum"]
 
-    SCORE["Health Score"]
+    PDF["Professional Report"]
 
-    KG --> SG
-    SG --> AI
-    AI --> SCORE
+    Q --> AGENT
+    KG --> AGENT
+    N --> AGENT
+    RF --> AGENT
+
+    AGENT --> REPORT
+    REPORT --> PDF
 
     classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
 
-    class KG,AI,SCORE,REV,GP,CFO,NI,MORE dark;
-
-    style SG fill:#000000,stroke:#666666,color:#FFFFFF
+    class Q,KG,N,RF,AGENT,REPORT,PDF dark;
 
     linkStyle default stroke:#FFFFFF,stroke-width:2px
 ```
