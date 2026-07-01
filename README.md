@@ -1,49 +1,49 @@
 ```mermaid
-flowchart TB
+flowchart LR
 
     STATE[(Shared Financial State)]
 
-    AGENT["Quantitative Analysis Agent"]
+    AGENT["Quantitative Analysis Engine"]
 
-    subgraph MODELS["Institutional Financial Models"]
+    subgraph ANALYTICS["Analytics Modules"]
 
-        F["Piotroski<br/>F-Score"]
+        HEALTH["Financial Health"]
 
-        B["Beneish<br/>M-Score"]
+        FORENSICS["Forensic Accounting"]
 
-        O["Ohlson<br/>O-Score"]
+        CREDIT["Credit Risk"]
 
-        M["Merton<br/>Distance-to-Default"]
-
-        D["DCF<br/>Valuation"]
-
-        MC["Monte Carlo<br/>Simulation"]
+        VAL["Valuation"]
 
     end
 
-    OUTPUT["Risk Metrics &<br/>Intrinsic Valuation"]
+    OUTPUT["Institutional Risk Assessment"]
 
     STATE --> AGENT
 
-    AGENT --> F
-    AGENT --> B
-    AGENT --> O
-    AGENT --> M
-    AGENT --> D
-    AGENT --> MC
+    AGENT --> HEALTH
+    AGENT --> FORENSICS
+    AGENT --> CREDIT
+    AGENT --> VAL
 
-    F --> OUTPUT
-    B --> OUTPUT
-    O --> OUTPUT
-    M --> OUTPUT
-    D --> OUTPUT
-    MC --> OUTPUT
+    HEALTH --- HEALTH_M["Piotroski"]
+
+    FORENSICS --- FORENSICS_M["Beneish"]
+
+    CREDIT --- CREDIT_M["Ohlson<br/>Merton"]
+
+    VAL --- VAL_M["DCF<br/>Monte Carlo"]
+
+    HEALTH --> OUTPUT
+    FORENSICS --> OUTPUT
+    CREDIT --> OUTPUT
+    VAL --> OUTPUT
 
     classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
 
-    class STATE,AGENT,F,B,O,M,D,MC,OUTPUT dark;
+    class STATE,AGENT,HEALTH,FORENSICS,CREDIT,VAL,OUTPUT,HEALTH_M,FORENSICS_M,CREDIT_M,VAL_M dark;
 
-    style MODELS fill:#000000,stroke:#666666,color:#FFFFFF
+    style ANALYTICS fill:#000000,stroke:#666666,color:#FFFFFF
 
     linkStyle default stroke:#FFFFFF,stroke-width:2px
 ```
