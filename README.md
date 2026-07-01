@@ -1,50 +1,36 @@
 ```mermaid
 flowchart LR
 
-    KG["Financial Knowledge Graph<br/><small>72+ Metrics</small>"]
+    KG["Financial Knowledge Graph<br/>72+ Metrics"]
 
-    subgraph SG["Illustrative Subgraph"]
+    subgraph SG["Illustrative Ego Subgraph"]
 
         REV((Revenue))
         GP((Gross Profit))
-        NI((Net Income))
         CFO((Cash Flow))
-        EQ((Equity))
+        NI((Net Income))
+        MORE((⋯))
 
-        MORE1((⋯))
-        MORE2((⋯))
-        MORE3((⋯))
-
-        REV --- GP
-        GP --- NI
-        NI --- CFO
-        CFO --- EQ
-
-        REV --- MORE1
-        GP --- MORE2
-        EQ --- MORE3
-
-        MORE1 --- MORE2
-        MORE2 --- MORE3
+        CFO --- REV
+        CFO --- GP
+        CFO --- NI
+        CFO --- MORE
 
     end
 
-    EGO["Ego-Centric<br/>Subgraph Extraction"]
+    AI["LLM<br/>Reasoning"]
 
-    LLM["LLM<br/>Contextual Reasoning"]
-
-    SCORE["Multi-Dimensional<br/>Health Assessment"]
+    SCORE["Health Score"]
 
     KG --> SG
-    SG --> EGO
-    EGO --> LLM
-    LLM --> SCORE
+    SG --> AI
+    AI --> SCORE
 
     classDef dark fill:#111111,stroke:#FFFFFF,color:#FFFFFF,stroke-width:2px;
 
-    class KG,EGO,LLM,SCORE,REV,GP,NI,CFO,EQ,MORE1,MORE2,MORE3 dark;
+    class KG,AI,SCORE,REV,GP,CFO,NI,MORE dark;
 
     style SG fill:#000000,stroke:#666666,color:#FFFFFF
 
-    linkStyle default stroke:#FFFFFF,stroke-width:1.8px
+    linkStyle default stroke:#FFFFFF,stroke-width:2px
 ```
